@@ -1,0 +1,11 @@
+{% block header %}
+    <header id="header" class="bck1 border-bottom">
+        <div class="container header-container">
+            <div class="header-logo">
+                <!-- TODO : Ajouter logo-->
+                <p>SnowTricks</p>
+            </div>
+            <h1>{% if title is defined %}{{title}}{% else %}Header{% endif %}</h1>
+        </div>
+    </header>
+{% endblock %}

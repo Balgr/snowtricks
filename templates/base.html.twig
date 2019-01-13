@@ -1,12 +1,64 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<html lang="{{ app.request.locale }}">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>
+        {% block title %}
+            {% if title is defined %}{{title}}{% else %}Title{% endif %} | Nom du site
+        {% endblock %}
+    </title>
+    {% block stylesheets %}
+        {% include 'stylesheets.html.twig' %}
+    {% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body id="{% block body_id %}{% endblock %}">
+
+{% block header %}
+    {% include 'header.html.twig' %}
+{% endblock %}
+
+{% block nav %}
+    {% include 'nav.html.twig' %}
+{% endblock %}
+
+{% block flash %}
+    {% for flash_message in app.session.flashbag.get('success') %}
+        <div class="container alert alert-success" role="alert">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashbag.get('info') %}
+        <div class="container alert alert-info" role="alert">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashbag.get('warning') %}
+        <div class="container alert alert-warning" role="alert">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+    {% for flash_message in app.session.flashbag.get('danger') %}
+        <div class="container alert alert-danger" role="alert">
+            {{ flash_message }}
+        </div>
+    {% endfor %}
+{% endblock %}
+
+<div class="container bck1 padded">
+    {% block body %}
+    {% endblock %}
+</div>
+
+{% block footer %}
+    <footer id="footer" class="bck1 border-top">
+        <div class="container">
+            <h4>Footer</h4>
+        </div>
+    </footer>
+{% endblock %}
+
+{% block javascripts %}{% endblock %}
+</body>
 </html>
