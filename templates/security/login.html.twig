@@ -2,14 +2,20 @@
 
 {% block body %}
 
-    {% if error %}
+    {% if errors is not empty %}
         <div class="alert alert-danger">
             <ul class="list-unstyled mb-0">
-                <li><span class="initialism form-error-icon badge badge-danger">Error</span>
-                    <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+            {% for error in errors %}
+                <li><span class="initialism form-error-icon badge badge-danger">Erreur</span>>
+                    {# <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>#}
+                    <span class="form-error-message">{{ error }}</span>
                 </li>
+            {% endfor %}
             </ul>
         </div>
     {% endif %}
     {{form(form)}}
+    <div class="forgotten-password">
+        <a href="{{ path('recup_password') }}">Mot de passe oublié ?</a>
+    </div>
 {% endblock %}

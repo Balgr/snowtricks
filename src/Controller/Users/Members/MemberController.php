@@ -8,11 +8,11 @@
 
 namespace App\Controller\Users\Members;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 /** @Route("/member") */
-class MemberController extends Controller
+class MemberController extends AbstractController
 {
     /**
      * @Route("/")

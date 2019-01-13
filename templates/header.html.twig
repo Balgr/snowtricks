@@ -1,11 +1,25 @@
 {% block header %}
-    <header id="header" class="bck1 border-bottom">
-        <div class="container header-container">
-            <div class="header-logo">
-                <!-- TODO : Ajouter logo-->
-                <p>SnowTricks</p>
+    <header id="header" class="header-area transparent-bar sticky-bar header-padding header-padding header-hm6">
+        <div class="container-fluid">
+            <div class="header-wrap header-flex">
+                <div class="header-logo">
+                    <!-- TODO : Ajouter logo-->
+                    <h1>SnowTricks</h1>
+                </div>
+                <div class="header-menu">
+                    <ul>
+                        <li><a>Accueil</a></li>
+                        <li><a>Tricks</a></li>
+                        <li><a>Contact</a></li>
+                        {% if app.user is not null %}
+                            <li><a href="{{ path('logout') }}">Déconnexion</a></li>
+                        {% else %}
+                            <li><a href="{{ path('login') }}">Connexion</a></li>
+                            <li><a href="/{{ path('app_registration_register') }}">Inscription</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-            <h1>{% if title is defined %}{{title}}{% else %}Header{% endif %}</h1>
         </div>
     </header>
 {% endblock %}
