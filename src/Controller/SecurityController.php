@@ -13,6 +13,7 @@ use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -65,7 +66,6 @@ class SecurityController extends AbstractController
      */
     public function forgottenPassword(Request $request, AuthenticationUtils $authenticationUtils)
     {
-        // TODO : Handle error better
         // get the login error if there is one
         if (!empty($authenticationUtils->getLastAuthenticationError())) {
             $this->errors[] = $authenticationUtils->getLastAuthenticationError();
@@ -159,7 +159,11 @@ class SecurityController extends AbstractController
         $form = $this->get('form.factory')
             ->createNamedBuilder(null)
             ->add('email', EmailType::class, ['label' => 'Email'])
-            ->add('password', PasswordType::class, ['label' => 'Nouveau mot de passe'])
+            ->add('plainPassword', RepeatedType::class, array(
+                'type' => PasswordType::class,
+                'first_options' => array('label' => 'Mot de passe'),
+                'second_options' => array('label' => 'Confirmation du mot de passe'),
+            ))
             ->add('ok', \Symfony\Component\Form\Extension\Core\Type\SubmitType::class, ['label' => 'Réinitialiser', 'attr' => ['class' => 'btn-primary btn-block']])
             ->getForm();
 
@@ -168,7 +172,7 @@ class SecurityController extends AbstractController
             // Checks if the submitted email corresponds to the User's
             if($user->getEmail() === $form->getData()['email']) {
                 // Set the User's new password
-                $user->setPlainPassword($form->getData()['password']);
+                $user->setPlainPassword($form->getData()['plainPassword']);
                 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
                 // Deletes the token and expiry date

@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wrapper-member">
+        {% block sidebar %}
+            {% include 'member/sidebar.html.twig' %}
+        {% endblock %}
+        <div class="content main-content">
+            <h3>Profil</h3>
+            {% if errors is not empty %}
+                <div class="alert alert-danger">
+                    <ul class="list-unstyled mb-0">
+                        {% for error in errors %}
+                            <li><span class="initialism form-error-icon badge badge-danger">Error</span>
+                                {# <span class="form-error-message">{{ error.messageKey|trans(error.messageData, 'security') }}</span>#}
+                                <span class="form-error-message">{{ error }}</span>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            {% if infos is not empty %}
+                <div class="alert alert-info">
+                    <ul class="list-unstyled mb-0">
+                        {% for info in infos %}
+                        <li><span class="initialism form-info-icon badge badge-info">Information</span>
+                            <span class="form-info-message">{{ info }}</span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <p>Vous pouvez modifier votre profil à partir du formulaire ci-dessous :</p>
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}

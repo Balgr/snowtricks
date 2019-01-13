@@ -1,0 +1,41 @@
+{% block sidebar %}
+<nav class="sidebar member-sidebar">
+    <div class="sidebar-header">
+        <h3>Espace membre</h3>
+    </div>
+
+    <ul class="list-unstyled components">
+        {#<li class="active">
+            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Home</a>
+            <ul class="collapse list-unstyled" id="homeSubmenu">
+                <li>
+                    <a href="#">Home 1</a>
+                </li>
+                <li>
+                    <a href="#">Home 2</a>
+                </li>
+                <li>
+                    <a href="#">Home 3</a>
+                </li>
+            </ul>
+        </li>#}
+        <li>
+            <a href="{{ path('app_users_members_member_index') }}">Accueil</a>
+        </li>
+        <li>
+            <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Utilisateurs</a>
+            <ul class="collapse list-unstyled" id="usersSubmenu">
+                <li>
+                    <a href="#">Liste</a>
+                </li>
+                <li>
+                    <a href="#">Nouveau</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            {# <a href="{{ path('app_users_members_member_tricks') }}">Mes Tricks</a> #}
+        </li>
+    </ul>
+</nav>
+{% endblock %}

@@ -16,6 +16,7 @@
     {% endif %}
     {{form(form)}}
     <div class="forgotten-password">
-        <a href="{{ path('recup_password') }}">Mot de passe oublié ?</a>
+        <a href="{{ path('recup_password') }}">Mot de passe oublié ?</a><br>
+        <a href="{{ path('app_registration_register') }}">S'inscrire</a>
     </div>
 {% endblock %}
