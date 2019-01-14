@@ -1,7 +1,7 @@
 {% block sidebar %}
 <nav class="sidebar member-sidebar">
     <div class="sidebar-header">
-        <h3>Espace membre</h3>
+        <h3>Espace Administration</h3>
     </div>
 
     <ul class="list-unstyled components">
@@ -20,16 +20,16 @@
             </ul>
         </li>#}
         <li>
-            <a href="{{ path('app_users_members_member_index') }}">Accueil</a>
+            <a href="{{ path('app_users_admins_admin_index') }}">Accueil</a>
         </li>
         <li>
             <a href="#usersSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Utilisateurs</a>
             <ul class="collapse list-unstyled" id="usersSubmenu">
                 <li>
-                    <a href="#">Liste</a>
+                    <a href="{{ path('list_users') }}">Liste</a>
                 </li>
                 <li>
-                    <a href="#">Nouveau</a>
+                    <a href="{{ path('add_user') }}">Nouveau</a>
                 </li>
             </ul>
         </li>

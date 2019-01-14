@@ -26,7 +26,7 @@ class UserType extends AbstractType {
                 'first_options' => array('label' => 'Mot de passe'),
                 'second_options' => array('label' => 'Confirmation du mot de passe'),
             ))
-            ->add('submit', SubmitType::class, ['label'=>'S\'inscrire', 'attr'=>['class'=>'btn-primary btn-block']])
+            ->add('submit', SubmitType::class, ['label'=>'Enregistrer', 'attr'=>['class'=>'btn-primary btn-block']])
         ;
     }
 }
